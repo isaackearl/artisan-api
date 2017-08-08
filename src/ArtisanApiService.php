@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: isaacearl
- * Date: 7/4/17
- * Time: 5:30 PM
- */
 
 namespace IsaacKenEarl\LaravelApi;
 
@@ -13,12 +7,12 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use IsaacKenEarl\LaravelApi\Exceptions\InvalidResponseCodeException;
 use IsaacKenEarl\LaravelApi\Exceptions\InvalidStatusCodeException;
-use IsaacKenEarl\LaravelApi\Interfaces\ApiServiceInterface;
+use IsaacKenEarl\LaravelApi\Interfaces\ArtisanApiServiceInterface;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use League\Fractal\TransformerAbstract;
 use Spatie\Fractal\Fractal;
 
-class ApiService implements ApiServiceInterface
+class ArtisanApiService implements ArtisanApiServiceInterface
 {
 
 
@@ -43,7 +37,7 @@ class ApiService implements ApiServiceInterface
     protected $fractal;
 
     /**
-     * ApiService constructor.
+     * ArtisanApiService constructor.
      */
     public function __construct(ResponseFactory $response, Fractal $fractal)
     {

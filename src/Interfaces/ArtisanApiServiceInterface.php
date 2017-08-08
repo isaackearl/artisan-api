@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: isaacearl
- * Date: 3/25/15
- * Time: 11:42 AM
- */
 
 namespace IsaacKenEarl\LaravelApi\Interfaces;
 
@@ -15,7 +9,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\JsonResponse;
 use League\Fractal\TransformerAbstract;
 
-interface ApiServiceInterface
+interface ArtisanApiServiceInterface
 {
 
 

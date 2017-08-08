@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: isaacearl
- * Date: 4/26/15
- * Time: 12:45 AM
- */
 
 namespace IsaacKenEarl\LaravelApi\Facades;
 

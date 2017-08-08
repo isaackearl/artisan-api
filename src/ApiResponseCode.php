@@ -1,6 +1,5 @@
 <?php
 
-
 namespace IsaacKenEarl\LaravelApi;
 
 class ApiResponseCode
