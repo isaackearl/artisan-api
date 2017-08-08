@@ -1,5 +1,5 @@
 {
-    "name": "IsaacKenEarl/LaravelApi",
+    "name": "isaackearl/laravel-api",
     "type": "library",
     "description": "An api service for Laravel or Lumen.  Helps you send responses with the proper status and code.  Uses Fractal for items and collections.",
     "keywords": [
