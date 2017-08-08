@@ -22,12 +22,12 @@
         "illuminate/pagination": "^5.4",
         "illuminate/routing": "^5.4",
         "illuminate/support": "~5.1",
+        "satooshi/php-coveralls": "^1.0",
         "spatie/laravel-fractal": "^4.3"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.9",
-        "phpunit/phpunit": "~4.0||~5.0||~6.0",
-        "squizlabs/php_codesniffer": "^2.3"
+        "phpunit/phpunit": "~4.0||~5.0||~6.0"
     },
     "autoload": {
         "psr-4": {
