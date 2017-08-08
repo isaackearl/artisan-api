@@ -20,7 +20,7 @@ matrix:
     - php: 5.3
 
 before_script:
-  - composer install --ignore-platform-reqs
+  - composer install
 
 script:
   - ./vendor/bin/phpunit -c phpunit.xml.dist
