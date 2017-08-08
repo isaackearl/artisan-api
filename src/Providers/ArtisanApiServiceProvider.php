@@ -12,8 +12,9 @@ namespace IsaacKenEarl\LaravelApi\Providers;
 use Illuminate\Support\ServiceProvider;
 use IsaacKenEarl\LaravelApi\ApiService;
 use IsaacKenEarl\LaravelApi\Interfaces\ApiServiceInterface;
+use Spatie\Fractal\FractalServiceProvider;
 
-class LaravelApiServiceProvider extends ServiceProvider
+class ArtisanApiServiceProvider extends ServiceProvider
 {
 
     public function boot()
@@ -25,6 +26,8 @@ class LaravelApiServiceProvider extends ServiceProvider
 
     public function register()
     {
+        $this->app->register(FractalServiceProvider::class);
+
         $this->app->singleton(ApiServiceInterface::class, ApiService::class);
     }
 

@@ -9,16 +9,17 @@
 namespace IsaacKenEarl\LaravelApi;
 
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use IsaacKenEarl\LaravelApi\Exceptions\InvalidResponseCodeException;
 use IsaacKenEarl\LaravelApi\Exceptions\InvalidStatusCodeException;
 use IsaacKenEarl\LaravelApi\Interfaces\ApiServiceInterface;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use League\Fractal\TransformerAbstract;
+use Spatie\Fractal\Fractal;
 
 class ApiService implements ApiServiceInterface
 {
-
 
 
     /**
@@ -32,11 +33,22 @@ class ApiService implements ApiServiceInterface
     protected $responseCode = ApiResponseCode::OK;
 
     /**
+     * @var \Symfony\Component\HttpFoundation\Response|\Illuminate\Contracts\Routing\ResponseFactory
+     */
+    protected $response;
+
+    /**
+     * @var \Spatie\Fractal\Fractal
+     */
+    protected $fractal;
+
+    /**
      * ApiService constructor.
      */
-    public function __construct()
+    public function __construct(ResponseFactory $response, Fractal $fractal)
     {
-
+        $this->response = $response;
+        $this->fractal = $fractal;
     }
 
     /**
@@ -47,7 +59,7 @@ class ApiService implements ApiServiceInterface
     public function respond($data, $headers = [])
     {
         $data = $data + ['response_code' => $this->getResponseCode()];
-        return response()->json($data, $this->getStatusCode(), $headers);
+        return $this->response->json($data, $this->getStatusCode(), $headers);
     }
 
     /**
@@ -63,7 +75,7 @@ class ApiService implements ApiServiceInterface
         }
 
         return $this->respond(
-            fractal()
+            $this->fractal
                 ->item($item, $transformer)
                 ->withResourceName($resourceName)
                 ->toArray()
@@ -84,7 +96,7 @@ class ApiService implements ApiServiceInterface
         }
 
         return $this->respond(
-            fractal()
+            $this->fractal
                 ->collection($collection, $transformer)
                 ->withResourceName($resourceName)
                 ->toArray()
@@ -105,7 +117,7 @@ class ApiService implements ApiServiceInterface
         }
 
         return $this->respond(
-            fractal()
+            $this->fractal
                 ->collection($paginator->items(), $transformer)
                 ->paginateWith(new IlluminatePaginatorAdapter($paginator))
                 ->withResourceName($resourceName)
@@ -119,7 +131,7 @@ class ApiService implements ApiServiceInterface
      */
     public function parseIncludes($include)
     {
-        fractal()->parseIncludes($include);
+        $this->fractal->parseIncludes($include);
     }
 
     /**
