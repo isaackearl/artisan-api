@@ -18,6 +18,7 @@
     ],
     "require": {
         "php": "~5.6|~7.0",
+        "illuminate/http": "^5.4",
         "illuminate/support": "~5.1",
         "spatie/laravel-fractal": "^4.3"
     },

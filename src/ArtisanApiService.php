@@ -38,6 +38,8 @@ class ArtisanApiService implements ArtisanApiServiceInterface
 
     /**
      * ArtisanApiService constructor.
+     * @param ResponseFactory $response
+     * @param Fractal $fractal
      */
     public function __construct(ResponseFactory $response, Fractal $fractal)
     {
