@@ -6,7 +6,7 @@
 [![Coverage Status][ico-coveralls]][link-coveralls]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-description
+An api service for Laravel or Lumen.  Helps you send responses with the proper status and code.  Uses Fractal for items and collections.
 
 ## Install
 
@@ -19,7 +19,11 @@ $ composer require isaackearl/artisan-api
 ## Usage
 
 ``` php
-// todo
+// do stuff like this
+
+return $this->api->respondNotFound();
+// or 
+return $this->api->respondWithItem($car, new CarTransformer());
 ```
 
 ## Change log
