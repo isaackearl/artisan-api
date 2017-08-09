@@ -6,21 +6,7 @@
 [![Coverage Status][ico-coveralls]][link-coveralls]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
-
-## Structure
-
-If any of the following are applicable to your project, then the directory structure should follow industry best practises by being named the following.
-
-```
-bin/        
-config/
-src/
-tests/
-vendor/
-```
-
+description
 
 ## Install
 
@@ -33,8 +19,7 @@ $ composer require isaackearl/artisan-api
 ## Usage
 
 ``` php
-$skeleton = new IsaacKenEarl\LaravelApi();
-echo $skeleton->echoPhrase('Hello, League!');
+// todo
 ```
 
 ## Change log
@@ -50,10 +35,6 @@ $ composer test
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details.
-
-## Security
-
-If you discover any security related issues, please email isaackearl@gmail.com instead of using the issue tracker.
 
 ## Credits
 
