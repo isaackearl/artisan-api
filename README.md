@@ -1,5 +1,7 @@
 # artisan-api
 
+[![Latest Stable Version](https://poser.pugx.org/isaackearl/artisan-api/v/stable)](https://packagist.org/packages/isaackearl/artisan-api)
+[![Latest Unstable Version](https://poser.pugx.org/isaackearl/artisan-api/v/unstable)](https://packagist.org/packages/isaackearl/artisan-api)
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
 [![Coverage Status][ico-coveralls]][link-coveralls]
@@ -58,7 +60,9 @@ There are alot of options.  Include the ArtisanApiInterface in your controller c
     }
 ```
 
-Take a look at the ArtisanApiInterface to see all the supported methods.
+Take a look at the ArtisanApiInterface to see all the supported methods.  You can find that here:
+
+[ArtisanApiInterface](https://github.com/isaackearl/artisan-api/blob/master/src/Interfaces/ArtisanApiServiceInterface.php)
 
 ## Transformers
 
