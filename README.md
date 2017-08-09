@@ -1,7 +1,7 @@
 # artisan-api
 
-[![Latest Stable Version](https://poser.pugx.org/isaackearl/artisan-api/v/stable)](https://packagist.org/packages/isaackearl/artisan-api)
-[![Latest Unstable Version](https://poser.pugx.org/isaackearl/artisan-api/v/unstable)](https://packagist.org/packages/isaackearl/artisan-api)
+[![Latest Stable Version][ico-poser-stable]][link-packagist]
+[![Latest Unstable Version][ico-poser-unstable]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
 [![Coverage Status][ico-coveralls]][link-coveralls]
@@ -59,6 +59,15 @@ There are alot of options.  Include the ArtisanApiInterface in your controller c
         return $this->api->respondWithCollection($users, new UserTransformer());
     }
 ```
+You can do custom stuff too and chain methods
+```php
+// you can respondWithError or respondWithMessage and customize the status code 
+// and response code etc
+return $this->api
+            ->setStatus(401)
+            ->setResponseCode(ResponseCodes::UNAUTHORIZED)
+            ->respondWithError('Not logged in');
+```
 
 Take a look at the ArtisanApiInterface to see all the supported methods.  You can find that here:
 
@@ -89,7 +98,13 @@ You can generate a transformer with the make:transformer command
 php artisan make:transformer UserTransformer
 ```
 
-This package uses https://github.com/spatie/laravel-fractal as it's fractal implementation.  Check out their docs on their github page for more specific usage information and examples.
+This package uses [laravel-fractal](https://github.com/spatie/laravel-fractal) as it's fractal implementation.  Check out their docs on their github page for more specific usage information and examples.
+
+Since we are using the laravel-fractal package you can also publish the [laravel-fractal](https://github.com/spatie/laravel-fractal) config to customize the response data. 
+
+```bash
+php artisan vendor:publish --provider="Spatie\Fractal\FractalServiceProvider"
+```
 
 ## Change log
 
@@ -120,6 +135,8 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/isaackearl/artisan-api.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/isaackearl/artisan-api.svg?style=flat-square
 [ico-coveralls]: https://coveralls.io/repos/github/isaackearl/artisan-api/badge.svg?branch=master
+[ico-poser-stable]: https://poser.pugx.org/isaackearl/artisan-api/v/stable
+[ico-poser-unstable]: https://poser.pugx.org/isaackearl/artisan-api/v/unstable
 
 [link-packagist]: https://packagist.org/packages/isaackearl/artisan-api
 [link-travis]: https://travis-ci.org/isaackearl/artisan-api
