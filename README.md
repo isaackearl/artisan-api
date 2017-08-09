@@ -20,7 +20,12 @@ $ composer require isaackearl/artisan-api
 Add the service provider to config/app.php
 
 ```php
+// For Laravel add this to config/app.php
 IsaacKenEarl\LaravelApi\Providers\ArtisanApiServiceProvider::class
+
+// For Lumen add this to bootstrap/app.php 
+$app->register(IsaacKenEarl\LaravelApi\Providers\ArtisanApiServiceProvider::class);
+
 ```
 
 (Optional) Add the API facade in config/app.php
