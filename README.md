@@ -1,5 +1,7 @@
 # artisan-api
 
+[![Latest Stable Version](https://poser.pugx.org/isaackearl/artisan-api/v/stable)](https://packagist.org/packages/isaackearl/artisan-api)
+[![Latest Unstable Version](https://poser.pugx.org/isaackearl/artisan-api/v/unstable)](https://packagist.org/packages/isaackearl/artisan-api)
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
