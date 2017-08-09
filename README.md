@@ -1,8 +1,5 @@
 # artisan-api
 
-[![Latest Stable Version](https://poser.pugx.org/isaackearl/artisan-api/v/stable)](https://packagist.org/packages/isaackearl/artisan-api)
-[![Latest Unstable Version](https://poser.pugx.org/isaackearl/artisan-api/v/unstable)](https://packagist.org/packages/isaackearl/artisan-api)
-[![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
 [![Coverage Status][ico-coveralls]][link-coveralls]
@@ -10,25 +7,85 @@
 
 An api service for Laravel or Lumen.  Helps you send responses with the proper status and code.  Uses Fractal for items and collections.
 
-## Install
+## Setup/Install
 
-Via Composer
+Require it with Composer
 
 ``` bash
 $ composer require isaackearl/artisan-api
 ```
 
+Add the service provider to config/app.php
+
+```php
+IsaacKenEarl\LaravelApi\Providers\ArtisanApiServiceProvider::class
+```
+
+(Optional) Add the API facade in config/app.php
+
+```php
+'Api' => IsaacKenEarl\LaravelApi\Facades\Api::class,
+```
+
 ## Usage
+
+In your controllers you can do stuff like this:
 
 ``` php
 // do stuff like this
+public function show() {
+    return Api::respondWithItem($user, new UserTransformer());
+}
 
-return $this->api->respondNotFound();
-// or 
-return $this->api->respondWithItem($car, new CarTransformer());
-// or
-return $this->api->respondOk();
+// or like this:
+
+return Api::respondNotFound();
 ```
+
+There are alot of options.  Include the ArtisanApiInterface in your controller constructor and you can use it without the facade.
+```php
+    private $api;
+
+    public function __construct(ArtisanApiServiceInterface $apiService)
+    {
+        $this->api = $apiService;
+    }
+
+    public function index()
+    {
+        $users = User::all();
+        return $this->api->respondWithCollection($users, new UserTransformer());
+    }
+```
+
+Take a look at the ArtisanApiInterface to see all the supported methods.
+
+## Transformers
+
+Transformers allow you to control how the data is presented in the response of your API.  A typical transformer looks like this:
+
+```php
+class UserTransformer extends Transformer
+{
+    function transform($user)
+    {
+
+        return [
+            'id' => $user->id,
+            'name' => $user->name,
+            'date_of_birth' => $user->date_of_birth->toDateString(),
+            'email' => $user->getPrimaryEmail()
+        ];
+    }
+}
+```
+You can generate a transformer with the make:transformer command
+
+```bash
+php artisan make:transformer UserTransformer
+```
+
+This package uses https://github.com/spatie/laravel-fractal as it's fractal implementation.  Check out their docs on their github page for more specific usage information and examples.
 
 ## Change log
 
