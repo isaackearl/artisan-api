@@ -1,4 +1,4 @@
-# artisan-api
+# Artisan API
 
 [![Latest Stable Version][ico-poser-stable]][link-packagist]
 [![Latest Unstable Version][ico-poser-unstable]][link-packagist]
@@ -45,6 +45,7 @@ return Api::respondNotFound();
 ```
 
 There are alot of options.  Include the ArtisanApiInterface in your controller constructor and you can use it without the facade.
+
 ```php
     private $api;
 
@@ -59,7 +60,9 @@ There are alot of options.  Include the ArtisanApiInterface in your controller c
         return $this->api->respondWithCollection($users, new UserTransformer());
     }
 ```
+
 You can do custom stuff too and chain methods
+
 ```php
 // you can respondWithError or respondWithMessage and customize the status code 
 // and response code etc
@@ -105,10 +108,6 @@ Since we are using the laravel-fractal package you can also publish the [laravel
 ```bash
 php artisan vendor:publish --provider="Spatie\Fractal\FractalServiceProvider"
 ```
-
-## Change log
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
 ## Testing
 
