@@ -4,9 +4,15 @@
     "description": "An api service for Laravel or Lumen.  Helps you send responses with the proper status and code.  Uses Fractal for items and collections.",
     "keywords": [
         "IsaacKenEarl",
-        "LaravelApi"
+        "artisan",
+        "artisan api",
+        "api",
+        "laravel",
+        "lumen",
+        "laravel api",
+        "isaackearl",
     ],
-    "homepage": "https://github.com/isaackearl/laravel-api",
+    "homepage": "https://github.com/isaackearl/artisan-api",
     "license": "MIT",
     "authors": [
         {
@@ -29,7 +35,8 @@
     "require-dev": {
         "satooshi/php-coveralls": "^1.0",
         "mockery/mockery": "^0.9.9",
-        "phpunit/phpunit": "~4.0||~5.0"
+        "phpunit/phpunit": "~4.0||~5.0",
+        "phpunit/php-token-stream": "~1.4.11"
     },
     "autoload": {
         "psr-4": {
