@@ -135,8 +135,8 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/isaackearl/artisan-api.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/isaackearl/artisan-api.svg?style=flat-square
 [ico-coveralls]: https://coveralls.io/repos/github/isaackearl/artisan-api/badge.svg?branch=master
-[ico-poser-stable]: https://poser.pugx.org/isaackearl/artisan-api/v/stable
-[ico-poser-unstable]: https://poser.pugx.org/isaackearl/artisan-api/v/unstable
+[ico-poser-stable]: https://poser.pugx.org/isaackearl/artisan-api/v/stable?format=flat
+[ico-poser-unstable]: https://poser.pugx.org/isaackearl/artisan-api/v/unstable?format=flat
 
 [link-packagist]: https://packagist.org/packages/isaackearl/artisan-api
 [link-travis]: https://travis-ci.org/isaackearl/artisan-api
