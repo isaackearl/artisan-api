@@ -2,7 +2,8 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Coverage Status](https://coveralls.io/repos/github/isaackearl/artisan-api/badge.svg?branch=master)](https://coveralls.io/github/isaackearl/artisan-api?branch=master)
+[![Build Status][ico-travis]][link-travis]
+[![Coverage Status][ico-coveralls]][link-coveralls]
 [![Total Downloads][ico-downloads]][link-downloads]
 
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
@@ -66,13 +67,13 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-version]: https://img.shields.io/packagist/v/isaackearl/artisan-api.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/isaackearl/artisan-api/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/isaackearl/artisan-api.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/isaackearl/artisan-api.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/isaackearl/artisan-api.svg?style=flat-square
+[ico-coveralls]: https://coveralls.io/repos/github/isaackearl/artisan-api/badge.svg?branch=master
 
 [link-packagist]: https://packagist.org/packages/isaackearl/artisan-api
 [link-travis]: https://travis-ci.org/isaackearl/artisan-api
-[link-scrutinizer]: https://scrutinizer-ci.com/g/isaackearl/artisan-api/code-structure
+[link-coveralls]: https://coveralls.io/github/isaackearl/artisan-api?branch=master
 [link-code-quality]: https://scrutinizer-ci.com/g/isaackearl/artisan-api
 [link-downloads]: https://packagist.org/packages/isaackearl/artisan-api
 [link-author]: https://github.com/isaackearl
