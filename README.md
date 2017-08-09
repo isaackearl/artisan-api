@@ -24,6 +24,8 @@ $ composer require isaackearl/artisan-api
 return $this->api->respondNotFound();
 // or 
 return $this->api->respondWithItem($car, new CarTransformer());
+// or
+return $this->api->respondOk();
 ```
 
 ## Change log
