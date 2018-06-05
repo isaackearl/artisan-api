@@ -57,11 +57,11 @@
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "IsaacKenEarl\\LaravelApi\\Providers\\ArtisanApiServiceProvider"
+            ]
         }
-    },
-    "laravel": {
-        "providers": [
-            "IsaacKenEarl\\LaravelApi\\Providers\\ArtisanApiServiceProvider"
-        ]
     }
 }
