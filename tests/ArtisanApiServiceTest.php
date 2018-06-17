@@ -189,7 +189,7 @@ class ArtisanApiServiceTest extends TestCase
         $this->assertJson($response->getContent());
         $this->assertJsonStringEqualsJsonString(json_encode([
             'error' => 'Error!',
-            'lazers' => 'are cool',
+            'errors' => ['lazers' => 'are cool'],
             'response_code' => ApiResponseCode::INVALID_REQUEST
         ]), $response->getContent());
         $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);

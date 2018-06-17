@@ -36,11 +36,11 @@ class ArtisanApiService implements ArtisanApiServiceInterface
      */
     protected $fractal;
 
-    protected $errorKey;
+    protected $errorKey = 'error';
 
-    protected $errorDataKey;
+    protected $errorDataKey = 'errors';
 
-    protected $messageKey;
+    protected $messageKey = 'message';
 
     /**
      * ArtisanApiService constructor.
@@ -49,9 +49,11 @@ class ArtisanApiService implements ArtisanApiServiceInterface
      */
     public function __construct(ResponseFactory $response, Fractal $fractal)
     {
-        $this->errorKey = config('api.error_message_key') ?? 'error';
-        $this->errorDataKey = config('api.error_data_key') ?? 'errors';
-        $this->messageKey = config('api.message_key') ?? 'message';
+        if (function_exists('config')) {
+            $this->errorKey = config('api.error_message_key');
+            $this->errorDataKey = config('api.error_data_key');
+            $this->messageKey = config('api.message_key');
+        }
 
         $this->response = $response;
         $this->fractal = $fractal;
