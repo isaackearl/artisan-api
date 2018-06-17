@@ -14,7 +14,7 @@ interface ArtisanApiServiceInterface
 
 
     /**
-     * @param $data
+     * @param array $data
      * @param array $headers
      * @return \Illuminate\Http\JsonResponse
      */
@@ -58,21 +58,21 @@ interface ArtisanApiServiceInterface
 
     /**
      * @param string $message
-     * @param $data
+     * @param array $data
      * @return \Illuminate\Http\JsonResponse
      */
     public function respondNotFound($message = 'Not Found!', $data = null);
 
     /**
      * @param string $message
-     * @param $data
+     * @param array $data
      * @return \Illuminate\Http\JsonResponse
      */
     public function respondInternalError($message = 'Internal Server Error', $data = null);
 
     /**
      * @param string $message
-     * @param $data
+     * @param array $data
      * @return \Illuminate\Http\JsonResponse
      * @throws InvalidStatusCodeException
      */
@@ -80,14 +80,14 @@ interface ArtisanApiServiceInterface
 
     /**
      * @param string $message
-     * @param $data
+     * @param array $data
      * @return \Illuminate\Http\JsonResponse
      */
     public function respondWithError($message, $data = null);
 
     /**
      * @param string $message
-     * @param $data
+     * @param array $data
      * @return \Illuminate\Http\JsonResponse
      * @throws InvalidStatusCodeException
      */

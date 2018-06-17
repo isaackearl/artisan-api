@@ -36,6 +36,12 @@ class ArtisanApiService implements ArtisanApiServiceInterface
      */
     protected $fractal;
 
+    protected $errorKey;
+
+    protected $errorDataKey;
+
+    protected $messageKey;
+
     /**
      * ArtisanApiService constructor.
      * @param ResponseFactory $response
@@ -43,19 +49,12 @@ class ArtisanApiService implements ArtisanApiServiceInterface
      */
     public function __construct(ResponseFactory $response, Fractal $fractal)
     {
+        $this->errorKey = config('api.error_message_key') ?? 'error';
+        $this->errorDataKey = config('api.error_data_key') ?? 'errors';
+        $this->messageKey = config('api.message_key') ?? 'message';
+
         $this->response = $response;
         $this->fractal = $fractal;
-    }
-
-    /**
-     * @param $data
-     * @param array $headers
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function respond($data, $headers = [])
-    {
-        $data = $data + ['response_code' => $this->getResponseCode()];
-        return $this->response->json($data, $this->getStatusCode(), $headers);
     }
 
     /**
@@ -76,6 +75,101 @@ class ArtisanApiService implements ArtisanApiServiceInterface
                 ->withResourceName($resourceName)
                 ->toArray()
         );
+    }
+
+    /**
+     * @param string $message
+     * @param array $data
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function respondNotFound($message = 'Not Found!', $data = null)
+    {
+        return $this->setStatusCode(404)
+            ->setResponseCode(ApiResponseCode::NOT_FOUND)
+            ->respondWithError($message, $data);
+    }
+
+    /**
+     * @param string $message
+     * @param array $data
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function respondWithError($message, $data = null)
+    {
+        if ($this->statusCode == 200) {
+            $this->statusCode = 400;
+        }
+
+        if ($this->responseCode == ApiResponseCode::OK) {
+            $this->responseCode = ApiResponseCode::INVALID_REQUEST;
+        }
+
+        $response = [$this->errorKey => $message];
+
+        if ($data) {
+            $response = $response + [$this->errorDataKey => $data]; // use the union because we don't want to override the message
+        }
+
+        return $this->respond($response);
+    }
+
+    /**
+     * @param array $data
+     * @param array $headers
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function respond($data, $headers = [])
+    {
+        $data = $data + ['response_code' => $this->getResponseCode()];
+        return $this->response->json($data, $this->getStatusCode(), $headers);
+    }
+
+    /**
+     * @return string
+     */
+    public function getResponseCode()
+    {
+        return $this->responseCode;
+    }
+
+    /**
+     * @param string $responseCode
+     * @return $this
+     * @throws InvalidResponseCodeException
+     */
+    public function setResponseCode($responseCode)
+    {
+        if (!is_string($responseCode)) {
+            throw new InvalidResponseCodeException();
+        }
+
+        $this->responseCode = $responseCode;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatusCode()
+    {
+        return (int)$this->statusCode;
+    }
+
+    /**
+     * @param int $statusCode
+     * @return $this
+     * @throws InvalidStatusCodeException
+     */
+    public function setStatusCode($statusCode)
+    {
+        if (!is_int($statusCode)) {
+            throw new InvalidStatusCodeException();
+        }
+
+        $this->statusCode = $statusCode;
+
+        return $this;
     }
 
     /**
@@ -131,29 +225,8 @@ class ArtisanApiService implements ArtisanApiServiceInterface
     }
 
     /**
-     * @param $message
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function respondWithMessage($message)
-    {
-        return $this->respond(['message' => $message]);
-    }
-
-    /**
      * @param string $message
-     * @param $data
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function respondNotFound($message = 'Not Found!', $data = null)
-    {
-        return $this->setStatusCode(404)
-            ->setResponseCode(ApiResponseCode::NOT_FOUND)
-            ->respondWithError($message, $data);
-    }
-
-    /**
-     * @param string $message
-     * @param $data
+     * @param array $data
      * @return \Illuminate\Http\JsonResponse
      */
     public function respondInternalError($message = 'Internal Server Error', $data = null)
@@ -165,7 +238,7 @@ class ArtisanApiService implements ArtisanApiServiceInterface
 
     /**
      * @param string $message
-     * @param $data
+     * @param array $data
      * @return \Illuminate\Http\JsonResponse
      * @throws InvalidStatusCodeException
      */
@@ -178,31 +251,7 @@ class ArtisanApiService implements ArtisanApiServiceInterface
 
     /**
      * @param string $message
-     * @param $data
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function respondWithError($message, $data = null)
-    {
-        if ($this->statusCode == 200) {
-            $this->statusCode = 400;
-        }
-
-        if ($this->responseCode == ApiResponseCode::OK) {
-            $this->responseCode = ApiResponseCode::INVALID_REQUEST;
-        }
-
-        $response = ['error' => $message];
-
-        if ($data) {
-            $response = $response + $data; // use the union because we don't want to override the message
-        }
-
-        return $this->respond($response);
-    }
-
-    /**
-     * @param string $message
-     * @param $data
+     * @param array $data
      * @return \Illuminate\Http\JsonResponse
      * @throws InvalidStatusCodeException
      */
@@ -223,50 +272,11 @@ class ArtisanApiService implements ArtisanApiServiceInterface
     }
 
     /**
-     * @return int
+     * @param $message
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function getStatusCode()
+    public function respondWithMessage($message)
     {
-        return (int)$this->statusCode;
-    }
-
-    /**
-     * @return string
-     */
-    public function getResponseCode()
-    {
-        return $this->responseCode;
-    }
-
-    /**
-     * @param int $statusCode
-     * @return $this
-     * @throws InvalidStatusCodeException
-     */
-    public function setStatusCode($statusCode)
-    {
-        if (!is_int($statusCode)) {
-            throw new InvalidStatusCodeException();
-        }
-
-        $this->statusCode = $statusCode;
-
-        return $this;
-    }
-
-    /**
-     * @param string $responseCode
-     * @return $this
-     * @throws InvalidResponseCodeException
-     */
-    public function setResponseCode($responseCode)
-    {
-        if (!is_string($responseCode)) {
-            throw new InvalidResponseCodeException();
-        }
-
-        $this->responseCode = $responseCode;
-
-        return $this;
+        return $this->respond([$this->messageKey => $message]);
     }
 }
